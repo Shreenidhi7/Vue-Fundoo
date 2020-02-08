@@ -18,8 +18,6 @@ import signup from "../components/signup";
 
 import dashboard from "../components/dashboard";
 
-import dash from "../components/dash";
-
 import notes from "../components/notes";
 
 import takeNote from "../components/takeNote";
@@ -29,8 +27,6 @@ import reminder from "../components/reminder";
 import archive from "../components/archive";
 
 import trash from "../components/trash";
-
-import noteDisplay from "../components/noteDisplay";
 
 import iconList from "../components/iconList";
 
@@ -111,32 +107,11 @@ const routes = [
 
       {
         path: "trash",
-        name: "trash",
+        // name: "trash",
         component: trash
-      },
-      {
-        path: "note-display",
-        name: "note-display",
-        component: noteDisplay
       }
     ]
-  },
-
-  {
-    path: "/dash",
-    name: "dash",
-    component: dash
   }
-
-  // {
-  //   path: "/about",
-  //   name: "about",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
 ];
 
 const router = new VueRouter({
