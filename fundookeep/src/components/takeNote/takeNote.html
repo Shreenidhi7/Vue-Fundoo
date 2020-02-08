@@ -1,0 +1,110 @@
+<section class="take-note">
+  <div
+    v-if="flag === true"
+    style="display: flex;
+    justify-content: center;
+    width: 100%; "
+  >
+    <div class="div">
+      <md-card class="card">
+        <!-- <div class="takeNote1" @click="reverseFlag">
+          <div
+            @click="reverseFlag"
+            data-text="Take a note..."
+            class="takecontent md-primary"
+            contenteditable="true"
+          ></div>
+        </div> -->
+
+        <!-- <div @click="reverseFlag" style="background: coral;">
+          <h1>Take a note..</h1>
+        </div> -->
+        <div @click="reverseFlag" class="takeNote1">
+          <div data-text="Take a note..." class="takecotent md-primary">
+            Take a note..
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="icons">
+            <div>
+              <md-button class="md-icon-button">
+                <img src="../../assets/checkBox.svg" alt="settingsIcon" />
+                <md-tooltip md-direction="bottom">New List</md-tooltip>
+              </md-button>
+            </div>
+
+            <div>
+              <md-button class="md-icon-button">
+                <img src="../../assets/paint.svg" alt="settingsIcon" />
+                <md-tooltip md-direction="bottom"
+                  >New note with drawing</md-tooltip
+                >
+              </md-button>
+            </div>
+            <div>
+              <md-button class="md-icon-button">
+                <img src="../../assets/pictures.svg" alt="settingsIcon" />
+                <md-tooltip md-direction="bottom"
+                  >New note with image</md-tooltip
+                >
+              </md-button>
+            </div>
+          </div>
+        </div>
+      </md-card>
+    </div>
+  </div>
+
+  <div v-if="flag === false">
+    <div class="div2">
+      <md-card
+        class="card2"
+        v-bind:style="{'background-color':backgroundColor }"
+      >
+        <div class="titlePin">
+          <textarea
+            v-model="takeNote.title"
+            placeholder="Title"
+            class="textArea"
+            matTextareaAutosize
+          ></textarea>
+
+          <div>
+            <div @click="pin2pinned" v-if="pinned == false">
+              <md-button class="md-icon-button">
+                <md-tooltip md-direction="top">Pin Note</md-tooltip>
+                <!-- <img src="../../assets/pin.svg" alt="pin" /> -->
+                <img src="../../assets/unpinned.svg" alt="unpinned" />
+              </md-button>
+            </div>
+            <div @click="pin2pinned" v-if="pinned == true">
+              <md-button class="md-icon-button">
+                <md-tooltip md-direction="top">Pinned Note</md-tooltip>
+                <!-- <img src="../../assets/pinned.svg" alt="pinned" /> -->
+                <img src="../../assets/pinned.svg" alt="pinned" />
+              </md-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="description">
+          <textarea
+            v-model="takeNote.description"
+            name="Take a Note.."
+            placeholder="Take a note.."
+            class="textArea"
+          ></textarea>
+        </div>
+
+        <div>
+          <iconlist @cardcolor="changeColor"></iconlist>
+        </div>
+
+        <div class="close-btn">
+          <md-button @click="addNote">Close</md-button>
+        </div>
+      </md-card>
+    </div>
+  </div>
+</section>

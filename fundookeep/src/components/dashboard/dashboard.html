@@ -1,0 +1,525 @@
+<section class="dashboard">
+  <div class="page-container">
+    <!-- <md-app> -->
+    <md-toolbar class="md-secondary" style="background: white;">
+      <md-button class="md-icon-button" @click="toggleMenu">
+        <!-- <md-button
+              class="md-icon-button"
+              @click="toggleMenu"
+              v-if="!menuVisible"
+              ><md-icon>menu</md-icon>
+            </md-button> -->
+
+        <!-- <md-button class="md-icon-button" @click="toggleMenu"
+          ><md-icon id="menuIcon">menu</md-icon>
+        </md-button> -->
+
+        <md-icon id="iconColor">menu</md-icon>
+        <md-tooltip md-direction="bottom">
+          Main Menu
+        </md-tooltip>
+      </md-button>
+
+      <div class="logo">
+        <img src="../../assets/icons8-google-keep.svg" alt="keep" />
+      </div>
+      <span class="md-title">Keep</span>
+
+      <!-- <div class="searchcard">
+        <md-autocomplete
+          class="search"
+          v-model="selectedEmployee"
+          :md-options="employees"
+          md-layout="box"
+        >
+          <label>Search...</label>
+        </md-autocomplete>
+      </div> -->
+
+      <!-- <div class="searchCard">
+        <md-autocomplete
+          class="search"
+          v-model="selectedNotes"
+          :md-options="notes"
+          md-layout="box"
+          ><label style="background-color:transparent; color: black; "
+            >Seach</label
+          >
+        </md-autocomplete>
+      </div> -->
+
+      <div class="md-toolbar-section-end">
+        <div @click="listToggle" class="logo">
+          <md-button @listOn="true" class="md-icon-button" v-if="ListOn">
+            <md-tooltip md-direction="bottom">List View</md-tooltip>
+            <!-- <md-icon id="iconColor">dns</md-icon> -->
+            <img src="../../assets/listIcon.svg" alt="listIcon" />
+          </md-button>
+
+          <md-button class="md-icon-button" v-else="!ListOn">
+            <md-tooltip md-direction="bottom">Grid View</md-tooltip>
+            <!-- <md-icon id="iconColor">dashboard</md-icon> -->
+            <img src="../../assets/gridIcon.svg" alt="gridIcon" />
+          </md-button>
+        </div>
+
+        <md-button class="md-icon-button">
+          <md-tooltip md-direction="bottom">Refresh</md-tooltip>
+          <!-- <md-icon id="iconColor">refresh</md-icon> -->
+          <img src="../../assets/refresh.svg" alt="refreshIcon" />
+        </md-button>
+
+        <div class="settings">
+          <md-button class="md-icon-button">
+            <!-- <md-icon
+              :md-src="('/home/bridgelabz/Desktop/shri/Project/VueProject/Fundoo-frontend/fundookeep/src/assets/settings.svg')"
+            ></md-icon> -->
+            <img src="../../assets/settings.svg" alt="settingsIcon" />
+
+            <md-tooltip md-direction="bottom">Settings</md-tooltip>
+          </md-button>
+        </div>
+
+        <!-- <div>
+          <md-button class="md-icon-button">
+            <md-tooltip md-direction="bottom">Settings</md-tooltip>
+            <md-icon id="iconColor">settings</md-icon>
+          </md-button>
+        </div> -->
+
+        <!-- <md-button class="md-icon-button">
+          <md-tooltip md-direction="bottom">Fundoo Account</md-tooltip>
+          <md-icon id="iconColor">account_circle</md-icon>
+        </md-button> -->
+
+        <md-button class="md-icon-button" @click="showProfileDialog">
+          <!-- <md-tooltip md-direction="bottom">Fundoo Account</md-tooltip> -->
+          <!-- <md-tooltip md-direction="bottom">Fundoo Account</md-tooltip> -->
+
+          <!-- <md-avatar class="md-small">
+            <img
+              src="../../assets//deadpool-clip-day-the-dead.jpg"
+              alt="deadpool"
+            />
+          </md-avatar> -->
+
+          <md-menu md-size="medium" md-align-trigger>
+            <md-button md-menu-trigger>
+              <md-avatar class="md-small">
+                <img
+                  src="../../assets//deadpool-clip-day-the-dead.jpg"
+                  alt="deadpool"
+                />
+              </md-avatar>
+            </md-button>
+
+            <md-menu-content class="profileContent">
+              <!-- <md-card class="cardProfile"> -->
+              <div class="profilePic">
+                <md-avatar class="md-medium">
+                  <img
+                    src="../../assets//deadpool-clip-day-the-dead.jpg"
+                    alt="deadpool"
+                  />
+                </md-avatar>
+              </div>
+
+              <!-- <md-menu-item> -->
+              <div class="userCredentials">
+                <div>
+                  <span>{{userFirstName}} {{userLastName}}</span>
+                </div>
+                <div>
+                  <span>{{userEmail}}</span>
+                </div>
+              </div>
+              <!-- </md-menu-item> -->
+
+              <div class="manageAccount">
+                <div id="text">
+                  <a href="">
+                    <span>Manage your Fundoo Account</span>
+                  </a>
+                </div>
+              </div>
+
+              <md-divider></md-divider>
+
+              <div class="logoutButton" @click="logoutUser">
+                <md-button class="md-raised">Sign out</md-button>
+              </div>
+
+              <md-divider></md-divider>
+
+              <md-menu-item>
+                <span style="font-weight: 100; font-size: 12px; ">
+                  <a href=""> Privacy Policy </a></span
+                >
+                <span style="font-weight: 100; font-size: 12px; ">
+                  <a href=""> Terms of Service</a>
+                </span>
+              </md-menu-item>
+
+              <!-- </md-card> -->
+            </md-menu-content>
+          </md-menu>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-app>
+      <md-app-drawer :md-active.sync="menuVisible" md-persistent="full">
+        <md-list class="btn">
+          <!-- <md-list-item
+            @click="changeBackground"
+            v-if="!backgroundColor"
+            style="background-color:rgb(254, 239, 195);"
+          >
+            <md-icon>lightbulb_outline</md-icon>
+            <span class="md-list-item-text">Notes</span>
+          </md-list-item> -->
+          <router-link to="/dashboard/notes">
+            <md-list-item>
+              <md-icon>lightbulb_outline</md-icon>
+              <span class="md-list-item-text">Notes</span>
+            </md-list-item>
+          </router-link>
+        </md-list>
+
+        <md-list class="btn">
+          <router-link to="/dashboard/reminder">
+            <md-list-item>
+              <md-icon>notifications_none</md-icon>
+              <span class="md-list-item-text">Reminders</span>
+            </md-list-item>
+          </router-link>
+        </md-list>
+        <!-- <hr /> -->
+        <md-divider></md-divider>
+
+        <!--------------------edit labels------------>
+        <div>
+          <md-list class="btn">
+            <!-- <md-list-item v-for="label in labelArray">
+              <md-tooltip md-direction="bottom">Create Label</md-tooltip>
+              <img src="../../assets/tag(solid).svg" alt="Tag" />
+              <span class="labeltext">{{label.label}}</span>
+            </md-list-item> -->
+
+            <md-list-item @click="showLabelDialog = true">
+              <md-icon>edit</md-icon>
+              <span class="md-list-item-text">Edit Labels</span>
+            </md-list-item>
+          </md-list>
+        </div>
+        <md-divider></md-divider>
+
+        <!-- <md-list class="btn">
+          <router-link to="/dashboard">
+            <span class="label">Labels</span>
+            <md-list-item v-for="label in labelArray">
+              <img src="../../assets/createLabel.svg" alt="" srcset="" />
+              <span class="labeltext">{{label.label}}</span>
+            </md-list-item>
+
+            <md-list-item @click="showLabelDialog = true">
+              <md-icon>edit</md-icon>
+              <span class="md-list-item-text">Edit Labels</span>
+            </md-list-item>
+          </router-link>
+        </!-->
+        <!-- <md-divider></md-divider> -->
+
+        <!-------------------------------->
+
+        <md-list class="btn">
+          <router-link to="/dashboard/archive">
+            <md-list-item>
+              <md-icon>archive</md-icon>
+              <span class="md-list-item-text">Archive</span>
+            </md-list-item>
+          </router-link>
+        </md-list>
+        <md-list class="btn">
+          <router-link to="/dashboard/trash">
+            <md-list-item>
+              <md-icon>delete</md-icon>
+              <span class="md-list-item-text">Bin</span>
+            </md-list-item>
+          </router-link>
+        </md-list>
+      </md-app-drawer>
+
+      <!-- <md-content class="md-scrollbar">
+        <router-view></router-view>
+      </md-content> -->
+
+      <md-app-content style="height: 100vh;">
+        <!-------profile pic dialog-------------->
+
+        <!-- <div v-if="profilepicDialog==true">
+          <md-menu md-size="medium" md-align-trigger>
+            <md-button md-menu-trigger>Align with trigger</md-button>
+
+            <md-menu-content>
+              <md-menu-item>My Item 1</md-menu-item>
+              <md-menu-item>My Item 2</md-menu-item>
+              <md-menu-item>My Item 3</md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div> -->
+
+        <!---------------------------------------->
+
+        <router-view></router-view>
+
+        <!-----------DIALOG--------------------->
+
+        <div>
+          <!-- <md-dialog :md-active.sync="showLabelDialog"> -->
+          <md-dialog
+            :md-active.sync="showLabelDialog"
+            style="background:cornsilk;"
+          >
+            <!-----------DIALOG--------------------->
+
+            <div class="dialogTitle">
+              <md-dialog-title>Edit Labels</md-dialog-title>
+            </div>
+
+            <!-------------------------------->
+
+            <!----------CONTENT---------------------->
+
+            <md-dialog-content>
+              <div class="dialogcontent1">
+                <div class="insideContent1">
+                  <div
+                    v-if="addLabelIcon == false"
+                    @click="changeToaddLabelIcon"
+                  >
+                    <md-button class="md-icon-button">
+                      <md-tooltip md-direction="bottom">Cancel</md-tooltip>
+                      <img src="../../assets/cancel.svg" alt="cancelIcon" />
+                    </md-button>
+                  </div>
+
+                  <div
+                    v-if="addLabelIcon == true"
+                    @click="changeToaddLabelIcon"
+                  >
+                    <md-button class="md-icon-button">
+                      <md-tooltip md-direction="bottom"
+                        >Create Label</md-tooltip
+                      >
+                      <img src="../../assets/addLabel.svg" alt="addLabelIcon" />
+                    </md-button>
+                  </div>
+
+                  <div>
+                    <md-field md-inline>
+                      <label>Create new label</label>
+                      <md-input id="inputLabel" v-model="form.label"></md-input>
+                    </md-field>
+                  </div>
+
+                  <div v-if="addLabelIcon == false" @click="CreateLabel">
+                    <md-button class="md-icon-button">
+                      <md-tooltip md-direction="bottom"
+                        >Create Label</md-tooltip
+                      >
+                      <img
+                        src="../../assets/createLabel.svg"
+                        alt="createLabelIcon"
+                      />
+                    </md-button>
+                  </div>
+
+                  <div v-if="addLabelIcon == true">
+                    <md-button class="md-icon-button">
+                      <md-tooltip md-direction="bottom"
+                        >Create Label</md-tooltip
+                      >
+                    </md-button>
+                  </div>
+                </div>
+              </div>
+              <!-- </md-dialog-content> -->
+
+              <!-------------------------------------------->
+
+              <!-- <md-content style="background: darkgray;">
+              <div class="main1 form">
+                <md-button class="md-icon-button" @click="Cancel">
+                  <img src="../../assets/cancel.svg" alt="cancelLabel" />
+                </md-button>
+                <md-field>
+                  <md-input
+                    name="createLabel"
+                    v-model="form.label"
+                    placeholder="Create New Label"
+                  >
+                  </md-input>
+                </md-field>
+
+                <md-button class="md-icon-button" @click="CreateLabel">
+                  <img src="../../assets/createLabel.svg" alt="CreateLabel" />
+                </md-button>
+              </div>
+            </md-content> -->
+
+              <!--------LABEL DYNAMIC DATA------------->
+
+              <div v-for="label in labelArray">
+                <!--------------------->
+                <div v-if="reverseinputfield == false">
+                  <div class="dialogcontent1">
+                    <div class="insideContent1">
+                      <div>
+                        <md-button class="md-icon-button">
+                          <md-tooltip>Label</md-tooltip>
+                          <img
+                            src="../../assets/tag(gray).svg"
+                            alt="createLabelIcon"
+                          />
+                        </md-button>
+                      </div>
+
+                      <div
+                        style="width: 60%"
+                        v-if="reverseinputfield == false"
+                        @click="reverseField(label)"
+                      >
+                        <span>{{label.label}}</span>
+                      </div>
+
+                      <div
+                        v-if="reverseinputfield == false"
+                        @click="reverseField(label)"
+                      >
+                        <md-button class="md-icon-button">
+                          <md-tooltip>Rename Label</md-tooltip>
+                          <img
+                            src="../../assets/renameLabel.svg"
+                            alt="renameLabelIcon"
+                          />
+                        </md-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---------------------->
+
+                <!----------------------------------------->
+
+                <div v-if="reverseinputfield == true">
+                  <div class="dialogcontent1">
+                    <div class="insideContent1">
+                      <div
+                        v-if="reverseinputfield == true"
+                        @click="deletelabel(label)"
+                      >
+                        <md-button class="md-icon-button">
+                          <md-tooltip> Delete Label </md-tooltip>
+                          <img
+                            src="../../assets/deleteLabel.svg"
+                            alt="DeleteLabel"
+                          />
+                        </md-button>
+                      </div>
+
+                      <div v-if="reverseinputfield == true">
+                        <md-field md-inline>
+                          <label>Enter label Name</label>
+                          <md-input
+                            type="text"
+                            v-model="label.label"
+                          ></md-input>
+                        </md-field>
+                      </div>
+
+                      <div
+                        v-if="reverseinputfield == true"
+                        @click="editLabel(label)"
+                      >
+                        <md-button class="md-icon-button">
+                          <md-tooltip>Create Label</md-tooltip>
+                          <img
+                            src="../../assets/createLabel.svg"
+                            alt="createLabelIcon"
+                          />
+                        </md-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!----------------------------------------->
+              </div>
+            </md-dialog-content>
+
+            <!----------------------------------------->
+
+            <!-- <div class="dislabel" v-for="label in labelArray">
+              <md-button class="md-icon-button btn1">
+                <img src="../../assets/settings.svg" alt="" srcset="" />
+              </md-button>
+              <md-button
+                class="md-icon-button btn2"
+                @click="deletelabel(label)"
+              >
+                <img src="../../assets/deleteForever.svg" alt="" srcset="" />
+              </md-button>
+              <div class="gun">
+                <input
+                  type="text"
+                  class="gun"
+                  v-model="label.label"
+                  @click="reversflag"
+                />
+              </div>
+              <md-button
+                class="md-icon-button"
+                v-if="flag==false"
+                @click="reversflag(label)"
+              >
+                <img src="../../assets/renameLabel.svg" alt="" srcset="" />
+              </md-button>
+              <md-button
+                class="md-icon-button"
+                v-if="flag==true"
+                @click="editLabel(label);reversflag"
+              >
+                <img src="../../assets/createLabel.svg" alt="" srcset="" />
+              </md-button>
+            </div> -->
+
+            <!--------------------------------------->
+
+            <md-divider></md-divider>
+
+            <!---md-dialog-actions------->
+
+            <md-dialog-actions>
+              <md-button @click="showLabelDialog = false">Cancel</md-button>
+              <md-button>Done</md-button>
+            </md-dialog-actions>
+
+            <!-- <md-dialog-actions>
+              <md-button class="btn" @click="showLabelDialog = false"
+                >Done</md-button
+              >
+              <md-button class="btn" @click="showLabelDialog = false"
+                >Cancel</md-button
+              >
+            </md-dialog-actions> -->
+
+            <!-------------------------->
+          </md-dialog>
+        </div>
+
+        <!-------------------------------->
+      </md-app-content>
+    </md-app>
+  </div>
+</section>

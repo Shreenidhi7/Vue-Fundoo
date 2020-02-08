@@ -1,0 +1,30 @@
+<section class="notes">
+  <div>
+    <take-note> </take-note>
+  </div>
+  <div class="emptySpace"></div>
+  <!-- <div class="rakeshIdea"> -->
+
+  <!---  PINNED NOTES -->
+
+  <div style="width: 100%;" class="pinnedCards" v-if="cards.length > 0">
+    <span> Pinned </span>
+  </div>
+
+  <note-display :card="cards" @pinnedcards="receivedPinned"></note-display>
+
+  <div class="emptySpace"></div>
+
+  <!---Others -->
+
+  <div class="others" v-if="Unpinnedcards.length>0 && cards.length>0">
+    <span> Others </span>
+  </div>
+
+  <note-display
+    :card="Unpinnedcards"
+    @unpinnedcards="receiveUnPinned"
+  ></note-display>
+
+  <!-- </div> -->
+</section>

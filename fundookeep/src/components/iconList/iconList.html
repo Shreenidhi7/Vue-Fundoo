@@ -1,0 +1,244 @@
+<section class="icon-list">
+  <div class="extensions">
+    <div>
+      <!-- <md-button class="md-icon-button">
+        <md-tooltip md-direction="left">Remind Me</md-tooltip>
+        <img src="../../assets/remindMe.svg" alt="remindme" />
+      </md-button> -->
+
+      <md-menu md-size="big" md-align-trigger>
+        <md-button md-menu-trigger class="md-icon-button">
+          <md-tooltip md-direction="left">Remind Me</md-tooltip>
+          <img src="../../assets/remindMe.svg" alt="remindme" />
+        </md-button>
+
+        <md-menu-content class="reminder">
+          <!-- <md-card class="reminderCard"> -->
+          <div v-if="reminderNext == false" class="allIndvContent">
+            <div class="reminderContent">
+              <h4>Reminder:</h4>
+            </div>
+
+            <div class="reminderContent2">
+              <div>
+                Later Today
+              </div>
+              <div>
+                20:00
+              </div>
+            </div>
+
+            <div class="reminderContent2">
+              <div>
+                Tomorrow
+              </div>
+              <div>
+                08:00
+              </div>
+            </div>
+
+            <div class="reminderContent2">
+              <div>
+                Next Week
+              </div>
+              <div>
+                Mon,08:00
+              </div>
+            </div>
+
+            <md-divider></md-divider>
+
+            <div class="dateTimepicker" @click="reminderNextPage">
+              <md-button class="md-icon-button">
+                <img src="../../assets/clock.svg" alt="clock" />
+              </md-button>
+              <div>
+                Select date and time
+              </div>
+            </div>
+
+            <!-- <div class="block">
+                <h3>Date</h3>
+                <md-datepicker v-model="date" />
+                <div class="value">value: {{date}}</div>
+              </div> -->
+          </div>
+
+          <div v-if="reminderNext == true" class="allIndvContent2">
+            <div class="reminderContent">
+              <md-button class="md-icon-button" @click="reminderNextPage">
+                <md-tooltip md-direction="bottom">Go Back</md-tooltip>
+                <img src="../../assets/goBack.svg" alt="goBack" />
+              </md-button>
+              <div>
+                Select date and time
+              </div>
+            </div>
+
+            <md-divider></md-divider>
+
+            <md-divider></md-divider>
+
+            <!-- <div class="dateTimepicker" @click="reminderNextPage">
+              <md-button class="md-icon-button">
+                <img src="../../assets/clock.svg" alt="clock" />
+              </md-button>
+              <div>
+                Select date and time
+              </div>
+            </div> -->
+
+            <div class="block">
+              <md-datepicker v-model="date" />
+              <div class="value">value: {{date}}</div>
+            </div>
+
+            <!-- <div class="block">
+              <h3>Dynamic By <code>:md-model-type</code></h3>
+              <md-radio v-model="mdTypeValue" value="date">Date</md-radio>
+              <md-radio v-model="mdTypeValue" value="string">String</md-radio>
+              <md-radio v-model="mdTypeValue" value="number">Number</md-radio>
+              <md-datepicker
+                v-model="dynamicByMdType"
+                :md-model-type="mdType"
+              />
+              <div class="value">value: {{dynamicByMdType}}</div>
+            </div> -->
+          </div>
+
+          <!-- <md-menu-item> </md-menu-item> -->
+          <!-- </md-card> -->
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <div>
+      <md-button class="md-icon-button">
+        <md-tooltip md-direction="bottom">collaborator</md-tooltip>
+        <img src="../../assets/collaborator.svg" alt="collaborator" />
+      </md-button>
+    </div>
+
+    <div>
+      <md-menu md-direction="top-start" md-align-trigger>
+        <md-button class="md-icon-button" md-menu-trigger>
+          <md-tooltip md-direction="bottom">Change Color</md-tooltip>
+          <img src="../../assets/changecolor.svg" alt="changeColor" />
+        </md-button>
+
+        <md-menu-content>
+          <div class="displaycolor" v-for="colors in colorArray">
+            <div v-for="color in colors">
+              <md-button
+                class="md-fab md-mini"
+                @click="colorsEdit(color.color,notecard)"
+                v-bind:style="{'background-color': color.color}"
+              >
+              </md-button>
+            </div>
+          </div>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+    <div>
+      <md-button
+        class="md-icon-button"
+        @click="$refs.file.click()"
+        @change="processFile($event)"
+      >
+        <input type="file" ref="file" style="display: none;" />
+
+        <md-tooltip md-direction="bottom">Add Image</md-tooltip>
+        <img src="../../assets/addImage.svg" alt="addImage" />
+      </md-button>
+    </div>
+
+    <div>
+      <div v-if="more !='archive'" @click="archiveNote(notecard)">
+        <md-button class="md-icon-button">
+          <md-tooltip md-direction="bottom">Archive</md-tooltip>
+          <img src="../../assets/archive.svg" alt="archiveUp" />
+        </md-button>
+      </div>
+      <div v-if="more =='archive'" @click="unArchiveNote(notecard)">
+        <md-button class="md-icon-button">
+          <md-tooltip md-direction="bottom">UnArchived</md-tooltip>
+          <img src="../../assets/archiveUp.svg" alt="archiveDown" />
+        </md-button>
+      </div>
+    </div>
+
+    <!-- <md-menu md-size="medium" md-align-trigger>
+      <md-tooltip md-direction="right">more</md-tooltip>
+
+      <md-button class="md-icon-button" md-menu-trigger>
+        <md-icon>more_vert</md-icon>
+      </md-button>
+
+      <md-menu-content>
+        <md-menu-item v-if="takeNote === false">
+          <div class="more" @click="deleteNoteTemp(notecard)">
+            Delete Note
+          </div>
+        </md-menu-item>
+
+        <md-menu-item>
+          <div class="more" @click="addLabel">
+            <p>Add Label</p>
+          </div>
+        </md-menu-item>
+
+        <md-menu-item>
+          <div class="more" @click="makeCopy">
+            Make a copy
+          </div>
+        </md-menu-item>
+
+        <md-menu-item>
+          <div class="more" @click="showTickBoxes">
+            Show tick boxes
+          </div>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu> -->
+
+    <!----Trail and Error------->
+
+    <md-menu md-size="medium" md-align-trigger>
+      <md-tooltip md-direction="right">more</md-tooltip>
+
+      <md-button class="md-icon-button" md-menu-trigger>
+        <md-icon>more_vert</md-icon>
+      </md-button>
+
+      <md-menu-content>
+        <md-menu-item>
+          <div class="more" @click="deleteNoteTemp(notecard)">
+            Delete Note
+          </div>
+        </md-menu-item>
+
+        <md-menu-item>
+          <div class="more" @click="addLabel">
+            Add Label
+          </div>
+        </md-menu-item>
+
+        <md-menu-item>
+          <div class="more" @click="makeCopy">
+            Make a copy
+          </div>
+        </md-menu-item>
+
+        <md-menu-item>
+          <div class="more" @click="showTickBoxes">
+            Show tick boxes
+          </div>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+
+    <!--------------------------->
+  </div>
+</section>

@@ -1,0 +1,127 @@
+<section class="md-scrollbar">
+  <div class="container">
+    <div class="title">
+      <tr class="titleOfFundoo">
+        <th id="f">F</th>
+        <th id="u">u</th>
+        <th id="n">n</th>
+        <th id="d">d</th>
+        <th id="o">o</th>
+        <th id="o2">o</th>
+      </tr>
+    </div>
+
+    <div class="subTitle">Sign in with your Fundoo Account</div>
+
+    <div id="app">
+      <!-- <form novalidate class="md-layout @submit.prevent="validateUser"> -->
+      <!-- <form novalidate @submit.stop.prevent="showSnackbar = true"> -->
+
+      <form
+        novalidate
+        class="md-layout"
+        @submit.prevent="validateUser"
+        @submit.stop.prevent="showSnackBar= true"
+      >
+        <md-card class="md-layout-item md-size-100 md-small-size-100">
+          <md-card-header>
+            <div id="iconDiv">
+              <md-icon
+                class="md-size md-primary"
+                :md-src="require('/home/bridgelabz/Desktop/shri/Project/VueProject/Fundoo-frontend/fundookeep/src/assets/account-icon.svg')"
+              >
+              </md-icon>
+
+              <!-- <md-avatar class="md-large md-layout md-alignment-center">
+                <img src="../../assets/account-icon.svg" alt="Account Icon" />
+              </md-avatar> -->
+            </div>
+          </md-card-header>
+
+          <md-card-content>
+            <div class="md-layout-item md-gutter">
+              <div class="md-layout-item md-size-100 md-small-size-100">
+                <md-field :class="getValidationClass('email')">
+                  <label>E-mail</label>
+                  <md-input
+                    name="email"
+                    id="email"
+                    v-model="form.email"
+                    :disabled="sending"
+                    >E-mail</md-input
+                  >
+
+                  <span class="md-error" v-if="!$v.form.email.required"
+                    >The email is required</span
+                  >
+                  <span class="md-error" v-else-if="!$v.form.email.email"
+                    >Invalid email</span
+                  >
+                </md-field>
+
+                <div class="md-layout-item md-size-100 md-small-size-100">
+                  <md-field :class="getValidationClass('password')">
+                    <label>Password</label>
+                    <md-input
+                      v-model="form.password"
+                      type="password"
+                      :disabled="sending"
+                    />
+
+                    <span class="md-error" v-if="!$v.form.password.required"
+                      >The Password is required</span
+                    >
+                    <span
+                      class="md-error"
+                      v-else-if="!$v.form.password.minlength"
+                      >Invalid Password</span
+                    >
+                  </md-field>
+                </div>
+
+                <div class="actions md-layout md-alignment-center">
+                  <!-- <md-button
+                    type="button"
+                    @click="login"
+                    class="md-raised md-primary"
+                  > -->
+                  <md-button
+                    type="submit"
+                    class=" md-raised md-primary"
+                    :disabled="sending"
+                  >
+                    <md-tooltip md-direction="bottom">LogIn</md-tooltip>
+                    sign in
+                  </md-button>
+                </div>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </form>
+    </div>
+
+    <div class="create-acc">
+      <a @click="register"
+        >Create an Account
+        <md-tooltip md-direction="bottom">Create an Account</md-tooltip>
+      </a>
+    </div>
+
+    <!-- <form novalidate @submit.stop.prevent="showSnackbar = true"> -->
+    <div :showSnackbar="true">
+      <md-snackbar
+        :md-position="position"
+        :md-duration="isInfinity ? Infinity : duration"
+        :md-active.sync="showSnackbar"
+        md-persistent
+      >
+        <span>{{errormsg}}</span>
+        <md-button class="md-primary" @click="showSnackbar = false"
+          >Cancel</md-button
+        >
+      </md-snackbar>
+    </div>
+    <!-- </form> -->
+  </div>
+</section>

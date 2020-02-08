@@ -1,0 +1,153 @@
+<section class="md-scrollbar">
+  <div class="container">
+    <div class="title">
+      <tr class="titleOfFundoo">
+        <th id="f">F</th>
+        <th id="u">u</th>
+        <th id="n">n</th>
+        <th id="d">d</th>
+        <th id="o">o</th>
+        <th id="o2">o</th>
+      </tr>
+    </div>
+
+    <!-- :class="getValidationClass('email')" -->
+    <div class="subTitle">One Account.All of Fundoo</div>
+
+    <div id="app">
+      <form novalidate class="md-layout" @submit.prevent="validateUser">
+        <div class="card-content">
+          <md-card class="md-layout-item md-size-100 md-small-size-100">
+            <md-card-header>
+              <div class="formTitle">SignUp</div>
+            </md-card-header>
+
+            <md-card-content>
+              <!-- <div class="md-layout md-gutter"> -->
+              <div class="md-layout md-gutter md-alignment-center">
+                <div
+                  class="md-layout-item md-size-50 md-medium-size-50 md-small-size-100"
+                >
+                  <md-field :class="getValidationClass('firstName')">
+                    <label for="firstName"> FirstName </label>
+
+                    <md-input
+                      name="firstName"
+                      id="firstName"
+                      v-model="form.firstName"
+                      :disabled="sending"
+                    />
+                    <span class="md-error" v-if="!$v.form.firstName.required">
+                      firstName is required
+                    </span>
+                    <span
+                      class="md-error"
+                      v-else-if="!$v.form.firstName.minlength"
+                      >invalid firstName</span
+                    >
+                  </md-field>
+                </div>
+
+                <!-- <div class="md-layout-item md-size-100 md-small-size-100"> -->
+                <div
+                  class="md-layout-item md-size-50 md-medium-size-50 md-small-size-100"
+                >
+                  <md-field :class="getValidationClass('lastName')">
+                    <label for="lastName"> LastName </label>
+
+                    <md-input
+                      name="lastName"
+                      id="lastName"
+                      v-model="form.lastName"
+                      :disabled="sending"
+                    />
+
+                    <span class="md-error" v-if="!$v.form.lastName.required">
+                      lastName is required
+                    </span>
+
+                    <spam
+                      class="md-error"
+                      v-else-if="!$v.form.lastName.minlength"
+                    >
+                      invalid lastName
+                    </spam>
+                  </md-field>
+                </div>
+
+                <div class="md-layout-item md-size-100 md-small-size-100 ">
+                  <md-field :class="getValidationClass('email')">
+                    <label for="email">
+                      Email
+                    </label>
+
+                    <md-input
+                      name="email"
+                      type="email"
+                      id="email"
+                      v-model="form.email"
+                      :disabled="sending"
+                    />
+
+                    <span class="md-error" v-if="!$v.form.email.required">
+                      email is required
+                    </span>
+
+                    <span class="md-error" v-else-if="!$v.form.email.email">
+                      Invalid Email
+                    </span>
+                  </md-field>
+                </div>
+
+                <div class="md-layout-item md-size-100 md-small-size-100">
+                  <md-field :class="getValidationClass('password')">
+                    <label>Password</label>
+                    <md-input
+                      v-model="form.password"
+                      :disabled="sending"
+                      type="password"
+                    />
+                    <span class="md-error" v-if="!$v.form.password.required"
+                      >The password is required</span
+                    >
+                    <span
+                      class="md-error"
+                      v-else-if="!$v.form.password.minlength"
+                      >Invalid password</span
+                    >
+                  </md-field>
+                </div>
+              </div>
+            </md-card-content>
+
+            <md-progress-bar md-mode="intermediate" v-if="sending" />
+
+            <md-card-actions class="md-alignment-center">
+              <div class="buttonsDiv">
+                <div class="create-acc">
+                  <a @click="login"
+                    >Have an Account?Sign In
+                    <md-tooltip md-direction="bottom">SignIn</md-tooltip>
+                  </a>
+                </div>
+
+                <div class="actions">
+                  <md-button
+                    type="submit"
+                    class="md-raised md-primary"
+                    :disabled="sending"
+                  >
+                    <md-tooltip md-direction="bottom"
+                      >Create Account</md-tooltip
+                    >
+                    Create Account</md-button
+                  >
+                </div>
+              </div>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
