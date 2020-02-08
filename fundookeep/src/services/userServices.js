@@ -28,10 +28,10 @@ function login(data) {
     data: data
   })
     .then(function(response) {
-      console.log("to check error", response.err);
+      // console.log("to check error", response.err);
 
       console.log("only response", response);
-      return response;
+      return response; //return response to corresponding pages
 
       // if (response.status == 200) {
       //   const loginDetails = response.data;
