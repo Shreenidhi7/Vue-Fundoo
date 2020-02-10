@@ -2,8 +2,11 @@ import noteService from "../../services/noteServices";
 
 import router from "../../router";
 
+import { serverBus } from "../../main";
+
 export default {
   name: "dashboard",
+  props: ["server"],
   components: {},
   data() {
     return {
@@ -43,6 +46,7 @@ export default {
     console.log("userLastName", this.userLastName);
     console.log("userEmail", this.userEmail);
   },
+
   methods: {
     // showlabelDialog() {
     //   this.showLabelDialog = !this.showLabelDialog;
@@ -67,15 +71,29 @@ export default {
     },
 
     listToggle() {
-      this.ListOn = !this.ListOn;
+      // this.ListOn = !this.ListOn;
       this.travelList(this.ListOn);
     },
 
+    // travelList(ListOn) {
+    //   console.log("emitting List Property", ListOn);
+    //   // this.$parent.$emit("listOn", ListOn);
+    //   this.$emit("listOn", ListOn);
+    //   console.log("the value of listOn after emitting", ListOn);
+    // },
+
     travelList(ListOn) {
       console.log("emitting List Property", ListOn);
-      this.$parent.$emit("listOn", ListOn);
+      // // this.$parent.$emit("listOn", ListOn);
       // this.$emit("listOn", ListOn);
-      console.log("the value of listOn after emitting", ListOn);
+      // console.log("the value of listOn after emitting", ListOn);
+
+      serverBus.$emit("listOn", ListOn);
+      this.ListOn = !this.ListOn;
+      // console.log(
+      //   "the value of listOn after emitting(through server bus)",
+      //   ListOn
+      // );
     },
 
     changeBackground() {

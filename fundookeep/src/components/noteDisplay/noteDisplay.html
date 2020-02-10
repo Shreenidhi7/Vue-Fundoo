@@ -1,7 +1,107 @@
 <section class="note-display">
   <div class="display">
     <md-card
+      v-if="ListOn == false"
       class="mdcard"
+      v-for="array in card"
+      :key="array.id"
+      v-bind:style="{'background-color': array.color}"
+    >
+      <!-- <div>
+        <div class="title">
+          {{array.title}}
+        </div>
+
+        <div class="description">
+          {{array.description}}
+        </div>
+      </div> -->
+
+      <!-- <div>
+        <div @click="pin2pinned" v-if="pinned == false">
+          <md-button class="md-icon-button">
+            <md-tooltip md-direction="top">Pin Note</md-tooltip>
+            <img src="../../assets/pin.svg" alt="pin" />
+          </md-button>
+        </div>
+        <div @click="pin2pinned" v-if="pinned==true">
+          <md-button class="md-icon-button">
+            <md-tooltip md-direction="top">Pinned Note</md-tooltip>
+            <img src="../../assets/pinned.svg" alt="pinned" />
+          </md-button>
+        </div>
+      </div> -->
+
+      <div class="div" style="width: 100%">
+        <div class="titlePin">
+          <div class="title" @click="showDialogPopUp(array)">
+            {{array.title}}
+          </div>
+
+          <div v-if="!trash" class="pinnnnnnnn">
+            <!---PINNED   -->
+
+            <div v-if="array.pinned" @click="unPin(array)">
+              <md-button class="md-icon-button">
+                <md-tooltip md-direction="top">Pinned Note</md-tooltip>
+                <img src="../../assets/pinned.svg" alt="pinned" />
+              </md-button>
+            </div>
+
+            <!--- UNPINNED  --->
+
+            <div v-if="!array.pinned" @click="pin(array)">
+              <md-button class="md-icon-button">
+                <md-tooltip md-direction="top">unPinned Note </md-tooltip>
+                <img src="../../assets/unpinned.svg" alt="unPinned" />
+              </md-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="des">
+          <div class="description">
+            {{array.description}}
+          </div>
+        </div>
+      </div>
+
+      <div class="trash" v-if="trash">
+        <div @click="deleteForever(array)">
+          <md-button class="md-icon-button">
+            <md-tooltip md-direction="top">Delete Forever </md-tooltip>
+            <img src="../../assets/deleteForever.svg" alt="deleteForever" />
+          </md-button>
+        </div>
+        <div @click="restore(array)">
+          <md-button class="md-icon-button">
+            <md-tooltip md-direction="top">Restore</md-tooltip>
+            <img src="../../assets/restore.svg" alt="Restore" />
+          </md-button>
+        </div>
+      </div>
+
+      <div></div>
+
+      <div class="iconListDiv">
+        <div v-if="!trash">
+          <iconlist
+            class="icon"
+            :notecard="array"
+            :more="archived"
+            @card="archive"
+            @unarchivecard="unarchive"
+            @deleteNote="trashNote"
+          ></iconlist>
+        </div>
+      </div>
+    </md-card>
+
+    <!----------TO GRID VIEW------------------->
+
+    <md-card
+      v-if="ListOn == true"
+      class="mdcardGrid"
       v-for="array in card"
       :key="array.id"
       v-bind:style="{'background-color': array.color}"

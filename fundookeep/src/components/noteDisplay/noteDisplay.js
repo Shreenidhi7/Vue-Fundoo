@@ -3,6 +3,8 @@ import noteService from "../../services/noteServices";
 
 import dashboard from "../dashboard";
 
+import { serverBus } from "../../main";
+
 export default {
   name: "note-display",
   components: { iconlist, dashboard },
@@ -26,13 +28,29 @@ export default {
       updateDescription: String,
       updatecolor: String,
       updatecard: Object,
-      parentmessage: ""
+      parentmessage: "",
+
+      ListOn: ""
 
       // active: false
     };
   },
   computed: {},
-  mounted() {},
+  mounted() {
+    console.log("in created ");
+
+    serverBus.$on("listOn", ListOn => {
+      this.ListOn = ListOn;
+      console.log("on received", this.ListOn);
+    });
+  },
+  created() {
+    // console.log("in created ");
+    // serverBus.$on("listOn", ListOn => {
+    //   this.ListOn = ListOn;
+    //   console.log("on received", this.ListOn);
+    // });
+  },
   methods: {
     pin2pinned() {
       this.pinned = !this.pinned;
