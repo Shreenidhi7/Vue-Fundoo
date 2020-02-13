@@ -220,10 +220,97 @@
         </md-menu-item>
 
         <md-menu-item>
-          <div class="more" @click="addLabel">
+          <div class="more" @click="addLabel(notecard)">
             Add Label
           </div>
         </md-menu-item>
+
+        <!---------Trail plz--------------------->
+
+        <!-- md-align-trigger -->
+        <!-- :md-offset-x="127" :md-offset-y="-36" -->
+
+        <md-menu-item>
+          <md-menu md-size="medium" style="height: 10px; ">
+            <div v-on:click.stop md-menu-trigger @click="getLabelsOfCards()">
+              Add Label now
+            </div>
+
+            <md-menu-content>
+              <div class="addLabel">
+                <div id="labelNote">
+                  <span>Label note</span>
+                </div>
+
+                <div class="enterLabel">
+                  <input
+                    autocomplete="false"
+                    v-on:click.stop
+                    id="inputLabel"
+                    v-model="form.addLabel"
+                    placeholder="Enter label name"
+                  />
+
+                  <div>
+                    <img
+                      id="searchImg"
+                      src="../../assets/search.svg"
+                      alt="searchIcon"
+                    />
+                  </div>
+                </div>
+
+                <!-- <md-divider></md-divider> -->
+
+                <!-- <md-app-divider class="md-inset"></md-app-divider> -->
+
+                <!--------------------------------->
+                <!-- @click="addLabel(notecard)" -->
+
+                <div class="displaybindData">
+                  <div id="plusIcon" @click="createLabel">
+                    <md-button class="md-icon-button">
+                      <img src="../../assets/plus.svg" alt="addLabelIcon" />
+                    </md-button>
+                  </div>
+
+                  <div v-on:click.stop id="bindingData">
+                    Create <span id="bold"> '{{form.addLabel}}' </span>
+                  </div>
+                </div>
+
+                <!--------------------------------->
+
+                <!-- <div v-for="label in Labels" :key="label._id">
+                  <div style="margin: 10px; font-size: 20px; ">
+                    {{label.label}}
+                  </div>
+                </div> -->
+                <!--------------GETTING ALL THE LABELS------------------->
+
+                <div class="getLabels">
+                  <div v-for="label in Labels" :key="label._id">
+                    <!-- <md-checkbox v-model="array.label" value="array.label"
+                      >{{label.label}}</md-checkbox
+                    > -->
+
+                    <md-checkbox
+                      @change="addLabel(label,notecard)"
+                      v-model="Labels"
+                      :key="label._id"
+                      :value="label.label"
+                      >{{label.label}}</md-checkbox
+                    >
+                  </div>
+                </div>
+
+                <!--------------------------------->
+              </div>
+            </md-menu-content>
+          </md-menu>
+        </md-menu-item>
+
+        <!---------------------------------------->
 
         <md-menu-item>
           <div class="more" @click="makeCopy">

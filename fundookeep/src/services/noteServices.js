@@ -220,7 +220,7 @@ export default {
       .then(res => {
         const getLabelDetails = res.data;
         console.log(
-          "Response Card's getlabel update( goes to note-display.js) ",
+          "Response Card's getlabel update( should go to iconlist ) ",
           getLabelDetails
         );
         return getLabelDetails;
@@ -273,6 +273,29 @@ export default {
       })
       .catch(error => {
         console.log("error while editing label of the card ", error);
+      });
+  },
+
+  addLabel(data) {
+    console.log("In service(adding label details)", data);
+
+    return axios(API_URL + "saveLabel", {
+      method: "PUT",
+      headers: {
+        token: localStorage.getItem("token")
+      },
+      data: data
+    })
+      .then(res => {
+        const createdlabel = res.data;
+        console.log(
+          "Response Card's added label to note update( goes to icon list.js) ",
+          createdlabel
+        );
+        return createdlabel;
+      })
+      .catch(error => {
+        console.log("error while adding label to note of the card ", error);
       });
   }
 };

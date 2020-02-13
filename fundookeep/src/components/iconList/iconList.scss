@@ -141,4 +141,185 @@ span {
   padding: 10px;
 }
 
+/////////////////////adding label/////////////////////////////////////
+
+.addLabel {
+  display: inline-block;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  // background: aqua;
+  margin: 2%;
+  padding: 2%;
+  font-size: 15px;
+}
+
+#labelNote {
+  // margin: 1%;
+  // padding: 1%;
+  // display: flex;
+  // background: burlywood;
+}
+
+.enterLabel {
+  width: 100%;
+  // background: chocolate;
+  margin: 1%;
+  padding: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#inputLabel {
+  color: #5f6368 !important;
+  border: none;
+  outline: none;
+  width: 70%;
+  font-size: 15px;
+  // background: cornflowerblue;
+}
+#searchImg {
+  width: 15px;
+  height: 15px;
+}
+
+.addLabel .displaybindData {
+  margin: 10% 0% 10% 0%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  height: 40px !important;
+  // background-color: goldenrod;
+  display: flex;
+  // flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+#plusIcon {
+  height: 40px;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-color: violet;
+  position: relative !important;
+}
+#bindingData {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 40px;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  // background-color: yellow;
+  // position: relative !important;
+}
+#bold {
+  font-weight: bold;
+}
+
+// .displaybindData {
+//   background: cornflowerblue;
+//   display: flex;
+//   flex-direction: row;
+//   // align-items: center;
+//   // justify-content: center;
+//   height: 50px !important;
+//   max-width: 100% !important;
+// }
+
+// #plusIcon {
+//   // position: absolute;
+//   // padding: 4%;
+//   // height: 50px !important;
+//   // width: 30% !important;
+//   // // background: forestgreen;
+//   // // position: fixed !important;
+//   display: inline-block;
+//   // align-items: center;
+//   // justify-content: flex-start;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   max-width: 40% !important;
+// }
+
+// #bindingData {
+//   // left: 10% !important ;
+//   // // position: relative !important;
+//   // // background: fuchsia;
+//   // display: inline-block;
+//   align-items: center;
+//   justify-content: center;
+//   background: goldenrod;
+//   max-width: 10% !important;
+//   min-height: 20px;
+//   display: flex;
+//   flex-direction: column;
+// }
+
+.md-field .md-input,
+.md-field .md-textarea {
+  // margin: 2%;
+  // padding: 2%;
+  // background: crimson;
+  text-decoration-line: none;
+  height: 25px;
+  text-decoration-line: none;
+  // text-decoration: none;
+  // /* height: 9px; */
+  // /* padding: 0; */
+  // /* display: block; */
+  // /* flex: 1; */
+  // /* border: none; */
+  // /* background: none; */
+  // transition: .4s cubic-bezier(.25,.8,.25,1);
+  // transition-property: font-size,padding-top,color;
+  // font-family: inherit;
+  // font-size: 13px;
+  // line-height: 28px;
+  // text-decoration-line: none;
+}
+
+.md-field::after {
+  position: relative;
+}
+
+///////////////////GET LABELS DIV/////////////////////////////////////////////////////////////////////
+
+.getLabels {
+  // background: coral;
+  margin: 1%;
+  padding: 10px;
+}
+
+// .md-checkbox.md-theme-default.md-checked.md-primary .md-checkbox-container {
+//   // background-color: #448aff;
+//   background: #5f6368 !important;
+//   background-color: #5f6368 !important;
+//   border-color: #5f6368 !important;
+//   border-color: #5f6368 !important;
+// }
+
+// .md-checkbox-container {
+//   background-color: darkgreen;
+// }
+
+.md-checkbox.md-theme-default.md-checked.md-primary .md-checkbox-container {
+  background-color: #448aff !important;
+  background-color: #50ff44 !important;
+  border-color: #448aff !important;
+  border-color: #ff1744 !important;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

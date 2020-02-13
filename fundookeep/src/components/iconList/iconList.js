@@ -44,7 +44,13 @@ export default {
       ],
 
       image: String,
-      reminderNext: false
+      reminderNext: false,
+      form: {
+        addLabel: null
+      },
+      Labels: [],
+      array: []
+
       // takeNote: true,
 
       // date: now,
@@ -99,7 +105,9 @@ export default {
     //   }
     // }
   },
-  mounted() {},
+  mounted() {
+    this.getLabelsOfCards();
+  },
   methods: {
     reminderNextPage() {
       console.log("IN REMINDER NEXT PAGE");
@@ -310,7 +318,101 @@ export default {
 
     /****************************************************************************************************** */
 
-    addLabel() {},
+    /****************************************************************************************************** */
+
+    /****************************************************************************************
+     *
+     *
+     * CREATE LABEL
+     *
+     *
+     */
+
+    createLabel() {
+      console.log("in iconList Create Label");
+
+      var userId = localStorage.getItem("userId");
+      console.log("user Id from local stroage in iconList ", userId);
+
+      var createLabelData = {
+        userId: userId,
+        label: this.form.addLabel
+      };
+
+      console.log(
+        "before sending data to service in iconlist",
+        createLabelData
+      );
+
+      noteService
+        .createLabel(createLabelData)
+        .then(res => {
+          console.log("response of created label", res);
+        })
+        .catch(err => {
+          console.log("error while creating label", err);
+        });
+    },
+
+    /****************************************************************************************
+     *
+     *
+     * ADD LABEL TO NOTE
+     *
+     *
+     */
+
+    addLabel(label, cardDetails) {
+      console.log("card Details when clicke on checkbox", cardDetails);
+
+      console.log("in iconlist when clicked on checkbox", label);
+
+      var addLabeltoCard = {
+        noteID: cardDetails._id,
+        label: label.label
+      };
+
+      console.log(
+        "adding label to note(before sending to noteservice)",
+        addLabeltoCard
+      );
+
+      noteService
+        .addLabel(addLabeltoCard)
+        .then(res => {
+          console.log("response of added label", res);
+        })
+        .catch(err => {
+          console.log("error while adding label", err);
+        });
+    },
+
+    /****************************************************************************************************** */
+
+    /****************************************************************************************
+     *
+     *
+     * GET ALL LABLES
+     *
+     *
+     */
+
+    getLabelsOfCards() {
+      console.log("in here at click");
+      noteService
+        .getLabel()
+        .then(res => {
+          console.log("getting all the labels created", res.data);
+          this.Labels = res.data;
+          this.Labels = this.Labels.reverse().slice(); //reverses the order of the labels in an array
+        })
+        .catch(err => {
+          console.log("error while getting labels", err);
+        });
+    },
+
+    /****************************************************************************************************** */
+
     makeCopy() {},
     showTickBoxes() {}
   }

@@ -83,7 +83,7 @@ export default {
     // },
 
     travelList(ListOn) {
-      console.log("emitting List Property", ListOn);
+      console.log("emitting List Property(before emiting)", ListOn);
       // // this.$parent.$emit("listOn", ListOn);
       // this.$emit("listOn", ListOn);
       // console.log("the value of listOn after emitting", ListOn);

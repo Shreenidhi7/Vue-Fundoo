@@ -249,6 +249,31 @@ export default {
         .catch(error => {
           console.log("error while updating notes(in display notes)", error);
         });
+    },
+
+    /********************************************************************** */
+
+    /***
+     *
+     *  to delete label
+     */
+
+    deleteLabel() {
+      console.log("in delete label (note-display)");
     }
+
+    // deleteForever(array) {
+    //   console.log("IN NOTE DISPLAY");
+    //   var data = {
+    //     noteID: array._id
+    //   };
+    //   noteService.deleteForever(data).then(data => {
+    //     console.log("saddddddddddddddd(in displayNote)", data);
+    //     let index = this.card.indexOf(array);
+    //     this.card.splice(index, 1);
+    //   });
+    // },
+
+    /********************************************************************** */
   }
 };

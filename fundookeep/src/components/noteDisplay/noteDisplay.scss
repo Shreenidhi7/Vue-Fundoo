@@ -361,6 +361,45 @@
   font-weight: bolder;
 }
 
+.labels {
+  // background: darkgreen;
+  margin: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1px 10px;
+  font-weight: bold;
+}
+
+.md-chip {
+  margin-left: 2px;
+  margin-right: 4px;
+  margin-bottom: 6px;
+  height: 32px;
+  // padding: 0 12px;
+  display: inline-block;
+  cursor: default;
+  border-radius: 32px;
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-property: background-color, color, opacity, transform, box-shadow;
+  will-change: background-color, color, opacity, transform, box-shadow;
+  font-size: 10px;
+  line-height: 32px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.md-chip.md-deletable {
+  padding-right: 32px;
+  position: relative;
+}
+
+// .md-chip {
+//   margin: 10%;
+//   padding: 10%;
+// }
+
 ////////////////TILL HERE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////EDIT////////////////////////////////////////////////////////////////////////////////////////////

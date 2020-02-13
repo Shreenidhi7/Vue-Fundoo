@@ -66,6 +66,12 @@
         </div>
       </div>
 
+      <div class="labels">
+        <div v-for="label in array.label">
+          <md-chip md-deletable>{{label}}</md-chip>
+        </div>
+      </div>
+
       <div class="trash" v-if="trash">
         <div @click="deleteForever(array)">
           <md-button class="md-icon-button">
@@ -162,6 +168,12 @@
           <div class="description">
             {{array.description}}
           </div>
+        </div>
+      </div>
+
+      <div class="labels">
+        <div v-for="label in array.label">
+          <md-chip md-deletable @click="deleteLabel">{{label}}</md-chip>
         </div>
       </div>
 
