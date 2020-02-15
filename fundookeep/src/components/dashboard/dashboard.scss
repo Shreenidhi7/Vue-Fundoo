@@ -144,6 +144,10 @@
     will-change: padding;
   }
 
+  md-list-item-content {
+    max-height: 30px !important;
+  }
+
   .viewport {
     // width: 300px;
     height: 93vh;
@@ -164,7 +168,9 @@
     // margin: 4px 2px;
     // transition: 0.3s;
     max-height: 50px;
-    background-color: white;
+    // background-color: #edeef1 !important;
+    // background-color: rgb(255, 244, 117);
+    margin: 1%;
     border-radius: 0 26px 26px 0;
   }
 
@@ -172,7 +178,8 @@
     // background-color: #3e8e41;
     // color: white;
 
-    background-color: #edeef1 !important;
+    background-color: rgb(255, 244, 117) !important ;
+    // background-color:  !important;
 
     // background-color: #feefc3;
     border-radius: 0 26px 26px 0;
@@ -378,6 +385,27 @@ span {
 #inputLabel {
   color: #5f6368 !important;
 }
+////////////////////////////////////////////////
+.getLabels {
+}
+
+.alignLabels {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.labelText {
+  width: 100%;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+////////////////////////////////////////////////
 
 // .mat-focused .mat-form-field-label {
 //   color: #027d7c !important;

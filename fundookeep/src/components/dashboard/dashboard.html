@@ -108,10 +108,7 @@
           <md-menu md-size="medium" md-align-trigger>
             <md-button md-menu-trigger>
               <md-avatar class="md-small">
-                <img
-                  src="../../assets//deadpool-clip-day-the-dead.jpg"
-                  alt="deadpool"
-                />
+                <img src="../../assets//deadpool-clip-day-the-dead.jpg" alt="deadpool" />
               </md-avatar>
             </md-button>
 
@@ -119,10 +116,7 @@
               <!-- <md-card class="cardProfile"> -->
               <div class="profilePic">
                 <md-avatar class="md-medium">
-                  <img
-                    src="../../assets//deadpool-clip-day-the-dead.jpg"
-                    alt="deadpool"
-                  />
+                  <img src="../../assets//deadpool-clip-day-the-dead.jpg" alt="deadpool" />
                 </md-avatar>
               </div>
 
@@ -155,8 +149,7 @@
 
               <md-menu-item>
                 <span style="font-weight: 100; font-size: 12px; ">
-                  <a href=""> Privacy Policy </a></span
-                >
+                  <a href=""> Privacy Policy </a></span>
                 <span style="font-weight: 100; font-size: 12px; ">
                   <a href=""> Terms of Service</a>
                 </span>
@@ -293,24 +286,16 @@
             <md-dialog-content>
               <div class="dialogcontent1">
                 <div class="insideContent1">
-                  <div
-                    v-if="addLabelIcon == false"
-                    @click="changeToaddLabelIcon"
-                  >
+                  <div v-if="addLabelIcon == false" @click="changeToaddLabelIcon">
                     <md-button class="md-icon-button">
                       <md-tooltip md-direction="bottom">Cancel</md-tooltip>
                       <img src="../../assets/cancel.svg" alt="cancelIcon" />
                     </md-button>
                   </div>
 
-                  <div
-                    v-if="addLabelIcon == true"
-                    @click="changeToaddLabelIcon"
-                  >
+                  <div v-if="addLabelIcon == true" @click="changeToaddLabelIcon">
                     <md-button class="md-icon-button">
-                      <md-tooltip md-direction="bottom"
-                        >Create Label</md-tooltip
-                      >
+                      <md-tooltip md-direction="bottom">Create Label</md-tooltip>
                       <img src="../../assets/addLabel.svg" alt="addLabelIcon" />
                     </md-button>
                   </div>
@@ -324,21 +309,14 @@
 
                   <div v-if="addLabelIcon == false" @click="CreateLabel">
                     <md-button class="md-icon-button">
-                      <md-tooltip md-direction="bottom"
-                        >Create Label</md-tooltip
-                      >
-                      <img
-                        src="../../assets/createLabel.svg"
-                        alt="createLabelIcon"
-                      />
+                      <md-tooltip md-direction="bottom">Create Label</md-tooltip>
+                      <img src="../../assets/createLabel.svg" alt="createLabelIcon" />
                     </md-button>
                   </div>
 
                   <div v-if="addLabelIcon == true">
                     <md-button class="md-icon-button">
-                      <md-tooltip md-direction="bottom"
-                        >Create Label</md-tooltip
-                      >
+                      <md-tooltip md-direction="bottom">Create Label</md-tooltip>
                     </md-button>
                   </div>
                 </div>
@@ -369,8 +347,7 @@
 
               <!--------LABEL DYNAMIC DATA------------->
 
-              <div v-for="label in labelArray">
-                <!--------------------->
+              <!-- <div v-for="label in labelArray">
                 <div v-if="reverseinputfield == false">
                   <div class="dialogcontent1">
                     <div class="insideContent1">
@@ -407,9 +384,6 @@
                     </div>
                   </div>
                 </div>
-                <!---------------------->
-
-                <!----------------------------------------->
 
                 <div v-if="reverseinputfield == true">
                   <div class="dialogcontent1">
@@ -452,9 +426,80 @@
                     </div>
                   </div>
                 </div>
+              </div> -->
 
-                <!----------------------------------------->
+              <!------------------------------------------>
+
+              <!-------------------------------------->
+
+              <div class="getLabels">
+                <div v-if="reverseinputfield == false">
+                  <div v-for="label in Labels" :key="label._id" class="alignLabels">
+                    <div @click="changeTagToDelete" v-if="changeTagIconToDeleteIcon == false">
+                      <md-button class="md-icon-button">
+                        <md-tooltip>Label</md-tooltip>
+                        <img src="../../assets/tag(gray).svg" alt="createLabelIcon" />
+                      </md-button>
+                    </div>
+
+                    <div v-if="changeTagIconToDeleteIcon == true" @click="deletelabel(label)">
+                      <md-button class="md-icon-button">
+                        <md-tooltip>Delete Label </md-tooltip>
+                        <img src="../../assets/deleteLabel.svg" alt="DeleteLabel" />
+                      </md-button>
+                    </div>
+
+                    <div v-if="reverseinputfield == false" @click="reverseField(label)" class="labelText">
+                      {{ label.label }}
+                    </div>
+
+                    <div v-if="reverseinputfield == false" @click="reverseField(label)">
+                      <md-button class="md-icon-button">
+                        <md-tooltip>Rename Label</md-tooltip>
+                        <img src="../../assets/renameLabel.svg" alt="renameLabelIcon" />
+                      </md-button>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+              <!-------------------------------------->
+
+              <div class="getLabels">
+                <div v-if="reverseinputfield == true">
+                  <div v-for="label in Labels" :key="label._id" class="alignLabels">
+                    <div @click="deletelabel(label)">
+                      <md-button class="md-icon-button">
+                        <md-tooltip>Delete Label </md-tooltip>
+                        <img src="../../assets/deleteLabel.svg" alt="DeleteLabel" />
+                      </md-button>
+                    </div>
+
+                    <!-- <div class="labelText">
+                      {{ label.label }}
+                    </div> -->
+
+                  
+                    
+                    
+                    <div >
+                      <div v-if="reverseinputfield == true" :key="label._id">
+                        <input type="text" v-model="label.label" :key="label._id"
+                          placeholder="Enter label Name"></input>
+                      </div>
+                    </div>
+
+                    <div v-if="reverseinputfield == true" @click="editLabel(label)">
+                      <md-button class="md-icon-button">
+                        <md-tooltip>Create Label</md-tooltip>
+                        <img src="../../assets/createLabel.svg" alt="createLabelIcon" />
+                      </md-button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-------------------------------------->
             </md-dialog-content>
 
             <!----------------------------------------->
@@ -500,8 +545,8 @@
             <!---md-dialog-actions------->
 
             <md-dialog-actions>
-              <md-button @click="showLabelDialog = false">Cancel</md-button>
-              <md-button>Done</md-button>
+              <md-button @click="showLabelDialog = false">Done</md-button>
+              <!-- <md-button>Done</md-button> -->
             </md-dialog-actions>
 
             <!-- <md-dialog-actions>

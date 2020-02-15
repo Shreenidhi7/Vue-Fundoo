@@ -255,11 +255,12 @@ export default {
 
     /***
      *
-     *  to delete label
+     *  to delete label of the particular note
      */
 
-    deleteLabel() {
-      console.log("in delete label (note-display)");
+    deleteLabel(labelDetails) {
+      console.log("in delete label (note-display)", labelDetails);
+      // console.log("in delete label (note-display)", id);
     }
 
     // deleteForever(array) {

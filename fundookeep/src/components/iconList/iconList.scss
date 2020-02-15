@@ -115,11 +115,43 @@
 }
 
 .dateTimepicker {
-  // background: darkgray;
+  margin: 1%;
+  width: 100%;
+  height: 50px;
+  // background: coral;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+///////////////trail//////////////////////////////////
+
+.remTrail {
+  width: 250px !important;
+}
+
+.timepickerSection {
+  margin: 1%;
+  width: 100%;
+  height: 50px;
+  background: coral;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 }
+
+#image {
+  width: 100%;
+  height: 100%;
+  // background: crimson;
+}
+#selectDT {
+  margin: 1%;
+  // background: chocolate;
+}
+//////////////////////////////////////////////////////////////
 
 .md-menu-item {
   margin: 2%;
@@ -152,12 +184,13 @@ span {
   margin: 2%;
   padding: 2%;
   font-size: 15px;
+  height: fit-content;
 }
 
 #labelNote {
-  // margin: 1%;
-  // padding: 1%;
-  // display: flex;
+  margin: 1%;
+  padding: 1%;
+  display: flex;
   // background: burlywood;
 }
 

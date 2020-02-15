@@ -1,10 +1,125 @@
 <section class="icon-list">
   <div class="extensions">
+    <!------------------------------------------------------------------------------------------------------------->
+
     <div>
       <!-- <md-button class="md-icon-button">
         <md-tooltip md-direction="left">Remind Me</md-tooltip>
         <img src="../../assets/remindMe.svg" alt="remindme" />
       </md-button> -->
+
+      <!---------------------------------------------------------------------------->
+      <!---------------------------------------------------------------------------->
+      <!--------------------------------------->
+
+      <md-menu md-size="medium" md-align-trigger>
+        <md-button md-menu-trigger class="md-icon-button">
+          <md-tooltip md-direction="left">Remind Me</md-tooltip>
+          <img src="../../assets/remindMe.svg" alt="remindme" />
+        </md-button>
+
+        <md-menu-content class="remTrail">
+          <div v-if="reminderNext == false" class="allIndvContent">
+            <div class="reminderContent">
+              <h4>Reminder:</h4>
+            </div>
+
+            <div class="reminderContent2">
+              <div>
+                Later Today
+              </div>
+              <div>
+                20:00
+              </div>
+            </div>
+
+            <div class="reminderContent2">
+              <div>
+                Tomorrow
+              </div>
+              <div>
+                08:00
+              </div>
+            </div>
+
+            <div class="reminderContent2">
+              <div>
+                Next Week
+              </div>
+              <div>
+                Mon,08:00
+              </div>
+            </div>
+
+            <md-divider></md-divider>
+
+            <div
+              v-on:click.stop
+              class="timepickerSection"
+              @click="reminderNextPage"
+            >
+              <div>
+                <md-button class="md-icon-button">
+                  <img id="image" src="../../assets/clock.svg" alt="clock" />
+                </md-button>
+              </div>
+              <div id="selectDT">
+                Select date and time
+              </div>
+            </div>
+
+            <!-- <div class="block">
+                <h3>Date</h3>
+                <md-datepicker v-model="date" />
+                <div class="value">value: {{date}}</div>
+              </div> -->
+          </div>
+
+          <div v-if="reminderNext == true" class="allIndvContent2">
+            <div v-on:click.stop class="reminderContent">
+              <md-button class="md-icon-button" @click="reminderNextPage">
+                <md-tooltip md-direction="bottom">Go Back</md-tooltip>
+                <img src="../../assets/goBack.svg" alt="goBack" />
+              </md-button>
+              <div>
+                Select date and time
+              </div>
+            </div>
+
+            <md-divider></md-divider>
+            <div>1</div>
+            <md-divider></md-divider>
+            <div>1</div>
+            <md-divider></md-divider>
+            <div>1</div>
+            <md-divider></md-divider>
+
+            <!-- <div class="dateTimepicker" @click="reminderNextPage">
+              <md-button class="md-icon-button">
+                <img src="../../assets/clock.svg" alt="clock" />
+              </md-button>
+              <div>
+                Select date and time
+              </div>
+            </div> -->
+
+            <!-- <div v-on:click.stop class="block">
+              <md-datepicker v-model="date" />
+              <div class="value">value: {{date}}</div>
+            </div> -->
+
+            <div class="block">
+              <h3>Date</h3>
+              <md-datepicker v-on:click.stop v-model="date" />
+              <!-- <div v-on:click.stop class="value">value: {{date}}</div> -->
+            </div>
+          </div>
+        </md-menu-content>
+      </md-menu>
+
+      <!---------------------------------------------------------------------------->
+      <!---------------------------------------------------------------------------->
+      <!---------------------------------------------------------------------------->
 
       <md-menu md-size="big" md-align-trigger>
         <md-button md-menu-trigger class="md-icon-button">
@@ -110,7 +225,11 @@
           <!-- </md-card> -->
         </md-menu-content>
       </md-menu>
+
+      <!------------------------------------>
     </div>
+
+    <!------------------------------------------------------------------------------------------------------------->
 
     <div>
       <md-button class="md-icon-button">
@@ -243,14 +362,15 @@
                 </div>
 
                 <div class="enterLabel">
-                  <input
-                    autocomplete="false"
-                    v-on:click.stop
-                    id="inputLabel"
-                    v-model="form.addLabel"
-                    placeholder="Enter label name"
-                  />
-
+                  <div>
+                    <input
+                      autocomplete="false"
+                      v-on:click.stop
+                      id="inputLabel"
+                      v-model="form.addLabel"
+                      placeholder="Enter label name"
+                    />
+                  </div>
                   <div>
                     <img
                       id="searchImg"
@@ -288,19 +408,21 @@
                 </div> -->
                 <!--------------GETTING ALL THE LABELS------------------->
 
-                <div class="getLabels">
-                  <div v-for="label in Labels" :key="label._id">
-                    <!-- <md-checkbox v-model="array.label" value="array.label"
+                <div class="md-scrollbar">
+                  <div class="getLabels">
+                    <div v-for="label in Labels" :key="label._id">
+                      <!-- <md-checkbox v-model="array.label" value="array.label"
                       >{{label.label}}</md-checkbox
                     > -->
 
-                    <md-checkbox
-                      @change="addLabel(label,notecard)"
-                      v-model="Labels"
-                      :key="label._id"
-                      :value="label.label"
-                      >{{label.label}}</md-checkbox
-                    >
+                      <md-checkbox
+                        @change="addLabel(notecard,label)"
+                        v-model="Labels"
+                        :key="label._id"
+                        :value="label.label"
+                        >{{label.label}}</md-checkbox
+                      >
+                    </div>
                   </div>
                 </div>
 

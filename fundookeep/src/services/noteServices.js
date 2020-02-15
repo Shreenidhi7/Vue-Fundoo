@@ -209,7 +209,7 @@ export default {
   },
 
   getLabel() {
-    console.log("In service(get label details)");
+    // console.log("In service(get label details)");
 
     return axios(API_URL + "getLabel", {
       method: "GET",
@@ -219,10 +219,10 @@ export default {
     })
       .then(res => {
         const getLabelDetails = res.data;
-        console.log(
-          "Response Card's getlabel update( should go to iconlist ) ",
-          getLabelDetails
-        );
+        // console.log(
+        //   "Response Card's getlabel update( should go to iconlist ) ",
+        //   getLabelDetails
+        // );
         return getLabelDetails;
       })
       .catch(error => {
@@ -296,6 +296,29 @@ export default {
       })
       .catch(error => {
         console.log("error while adding label to note of the card ", error);
+      });
+  },
+
+  deleteLabelOfNote(data) {
+    console.log("In service(delete label of particular note details)");
+
+    return axios(API_URL + "deleteNoteLabel", {
+      method: "PUT",
+      headers: {
+        token: localStorage.getItem("token")
+      },
+      data: data
+    })
+      .then(res => {
+        const deletedLabelofNoteDetails = res.data;
+        console.log(
+          "Response Card's deletedlabel update( goes to note-display.js) ",
+          deletedLabelofNoteDetails
+        );
+        return deletedLabelofNoteDetails;
+      })
+      .catch(error => {
+        console.log("error while deleting label of the card ", error);
       });
   }
 };

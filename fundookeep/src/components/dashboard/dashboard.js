@@ -32,7 +32,10 @@ export default {
       ListOn: true,
       menuVisible: true,
       selectedNotes: null,
-      notes: ["abc", "asc", "asds"]
+      notes: ["abc", "asc", "asds"],
+
+      Labels: [],
+      changeTagIconToDeleteIcon: false
     };
   },
   computed: {},
@@ -45,6 +48,10 @@ export default {
     console.log("userFirstName", this.userFirstName);
     console.log("userLastName", this.userLastName);
     console.log("userEmail", this.userEmail);
+
+    // this.getTrashCards();
+
+    this.getLabels();
   },
 
   methods: {
@@ -68,6 +75,12 @@ export default {
 
     toggleMenu() {
       this.menuVisible = !this.menuVisible;
+    },
+
+    changeTagToDelete() {
+      console.log("in changeTagToDelete");
+      this.changeTagIconToDeleteIcon = !this.changeTagIconToDeleteIcon;
+      // this.changeTagToDelete = !this.changeTagToDelete;
     },
 
     listToggle() {
@@ -127,6 +140,7 @@ export default {
         .then(res => {
           this.labelArray.push(res.data);
           this.form.label = null;
+          this.getLabels();
         })
         .catch(err => {
           console.log("error while creating label ", err);
@@ -197,6 +211,30 @@ export default {
           console.log("error while editing ", err);
         });
     },
+
+    /****************************************************************************************
+     *
+     *
+     * GET ALL LABLES
+     *
+     *
+     */
+
+    getLabels() {
+      console.log("in here at click");
+      noteService
+        .getLabel()
+        .then(res => {
+          console.log("getting all the labels created", res.data);
+          this.Labels = res.data;
+          this.Labels = this.Labels.reverse().slice(); //reverses the order of the labels in an array
+        })
+        .catch(err => {
+          console.log("error while getting labels", err);
+        });
+    },
+
+    /****************************************************************************************************** */
 
     /**************************************************************** */
 

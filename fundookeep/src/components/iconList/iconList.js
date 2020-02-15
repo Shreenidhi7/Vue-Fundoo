@@ -4,6 +4,10 @@ import noteService from "../../services/noteServices";
 // import format from "date-fns/format";
 // import isValid from "date-fns/isValid";
 
+import parse from "date-fns/parse";
+import format from "date-fns/format";
+import isValid from "date-fns/isValid";
+
 export default {
   name: "icon-list",
   components: {},
@@ -18,6 +22,8 @@ export default {
   data() {
     // let dateFormat = this.$materail.locale.dateFormat || "yyyy-MM-dd";
     // let now = new Date();
+    let dateFormat = this.$material.locale.dateFormat || "yyyy-MM-dd";
+    let now = new Date();
 
     return {
       colorArray: [
@@ -49,61 +55,61 @@ export default {
         addLabel: null
       },
       Labels: [],
-      array: []
+      array: [],
 
       // takeNote: true,
 
-      // date: now,
-      // string: format(now, dateFormat),
-      // number: Number(now),
-      // dynamicByModel: now,
+      date: now,
+      string: format(now, dateFormat),
+      number: Number(now),
+      dynamicByModel: now,
 
-      // mdTypeValue: "date",
-      // dynamicByMdType: now
+      mdTypeValue: "date",
+      dynamicByMdType: now
     };
   },
   computed: {
-    // firstDayOfAWeek: {
-    //   get() {
-    //     return this.$material.locale.firstDayOfAWeek;
-    //   },
-    //   set(val) {
-    //     this.$material.locale.firstDayOfAWeek = val;
-    //   }
-    // },
-    // type() {
-    //   if (
-    //     typeof this.dynamicByModel === "object" &&
-    //     this.dynamicByModel instanceof Date &&
-    //     isValid(this.dynamicByModel)
-    //   ) {
-    //     return "date";
-    //   } else if (typeof this.dynamicByModel === "string") {
-    //     return "string";
-    //   } else if (
-    //     Number.isInteger(this.dynamicByModel) &&
-    //     this.dynamicByModel >= 0
-    //   ) {
-    //     return "number";
-    //   } else if (this.model === null || this.model === undefined) {
-    //     return "null";
-    //   } else {
-    //     throw new Error("Type error");
-    //   }
-    // },
-    // dateFormat() {
-    //   return this.$material.locale.dateFormat || "yyyy-MM-dd";
-    // },
-    // mdType() {
-    //   switch (this.mdTypeValue) {
-    //     case "date":
-    //       return Date;
-    //     case "string":
-    //       return String;
-    //     case "number":
-    //       return Number;
-    //   }
-    // }
+    firstDayOfAWeek: {
+      get() {
+        return this.$material.locale.firstDayOfAWeek;
+      },
+      set(val) {
+        this.$material.locale.firstDayOfAWeek = val;
+      }
+    },
+    type() {
+      if (
+        typeof this.dynamicByModel === "object" &&
+        this.dynamicByModel instanceof Date &&
+        isValid(this.dynamicByModel)
+      ) {
+        return "date";
+      } else if (typeof this.dynamicByModel === "string") {
+        return "string";
+      } else if (
+        Number.isInteger(this.dynamicByModel) &&
+        this.dynamicByModel >= 0
+      ) {
+        return "number";
+      } else if (this.model === null || this.model === undefined) {
+        return "null";
+      } else {
+        throw new Error("Type error");
+      }
+    },
+    dateFormat() {
+      return this.$material.locale.dateFormat || "yyyy-MM-dd";
+    },
+    mdType() {
+      switch (this.mdTypeValue) {
+        case "date":
+          return Date;
+        case "string":
+          return String;
+        case "number":
+          return Number;
+      }
+    }
   },
   mounted() {
     this.getLabelsOfCards();
@@ -115,35 +121,35 @@ export default {
       this.reminderNext = !this.reminderNext;
     },
 
-    // toDate() {
-    //   switch (this.type) {
-    //     case "null":
-    //       this.dynamicByModel = null;
-    //       break;
+    toDate() {
+      switch (this.type) {
+        case "null":
+          this.dynamicByModel = null;
+          break;
 
-    //     case "string":
-    //       this.dynamicByModel = parse(
-    //         this.dynamicByModel,
-    //         this.dateFormat,
-    //         new Date()
-    //       );
-    //       break;
+        case "string":
+          this.dynamicByModel = parse(
+            this.dynamicByModel,
+            this.dateFormat,
+            new Date()
+          );
+          break;
 
-    //     case "number":
-    //       this.dynamicByModel = new Date(this.dynamicByModel);
-    //       break;
-    //   }
-    // },
+        case "number":
+          this.dynamicByModel = new Date(this.dynamicByModel);
+          break;
+      }
+    },
 
-    // toString() {
-    //   this.toDate();
-    //   this.dynamicByModel =
-    //     this.dynamicByModel && format(this.dynamicByModel, this.dateFormat);
-    // },
-    // toNumber() {
-    //   this.toDate();
-    //   this.dynamicByModel = this.dynamicByModel && Number(this.dynamicByModel);
-    // },
+    toString() {
+      this.toDate();
+      this.dynamicByModel =
+        this.dynamicByModel && format(this.dynamicByModel, this.dateFormat);
+    },
+    toNumber() {
+      this.toDate();
+      this.dynamicByModel = this.dynamicByModel && Number(this.dynamicByModel);
+    },
 
     /****************************************************************************************
      *
@@ -362,14 +368,24 @@ export default {
      *
      */
 
-    addLabel(label, cardDetails) {
-      console.log("card Details when clicke on checkbox", cardDetails);
+    addLabel(cardDetails, labelDetails) {
+      console.log(
+        "[CARD DETAILS] Details when clicke on checkbox",
+        cardDetails
+      );
 
-      console.log("in iconlist when clicked on checkbox", label);
+      console.log(
+        "[LABEL DETAILS]in iconlist when clicked on checkbox",
+        labelDetails
+      );
+
+      console.log("label", labelDetails);
+      console.log("label id", labelDetails._id);
 
       var addLabeltoCard = {
         noteID: cardDetails._id,
-        label: label.label
+        label: labelDetails.label,
+        labelID: labelDetails._id
       };
 
       console.log(
@@ -398,11 +414,11 @@ export default {
      */
 
     getLabelsOfCards() {
-      console.log("in here at click");
+      // console.log("in here at click");
       noteService
         .getLabel()
         .then(res => {
-          console.log("getting all the labels created", res.data);
+          // console.log("getting all the labels created", res.data);
           this.Labels = res.data;
           this.Labels = this.Labels.reverse().slice(); //reverses the order of the labels in an array
         })

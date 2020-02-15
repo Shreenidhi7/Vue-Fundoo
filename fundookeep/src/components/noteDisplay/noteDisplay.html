@@ -66,9 +66,21 @@
         </div>
       </div>
 
+      <!-- <div class="labels">
+        <div v-for="label in array.label">
+          <md-chip
+            @click="deleteLabel(array.label,label)"
+            :key="label._id"
+            :value="label.label"
+            md-deletable
+            >{{label}}</md-chip
+          >
+        </div>
+      </div> -->
+
       <div class="labels">
         <div v-for="label in array.label">
-          <md-chip md-deletable>{{label}}</md-chip>
+          <md-chip @click="deleteLabel(label)" md-deletable>{{label}}</md-chip>
         </div>
       </div>
 
@@ -173,7 +185,9 @@
 
       <div class="labels">
         <div v-for="label in array.label">
-          <md-chip md-deletable @click="deleteLabel">{{label}}</md-chip>
+          <div @change="deleteLabel(array.label)" :key="label._id">
+            <md-chip>{{label}}</md-chip>
+          </div>
         </div>
       </div>
 
