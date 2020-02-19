@@ -4,6 +4,8 @@ import router from "../../router";
 
 import { serverBus } from "../../main";
 
+import { reverse, filterBy, findBy } from "../../services/filter";
+
 export default {
   name: "dashboard",
   props: ["server"],
@@ -30,12 +32,15 @@ export default {
       color: "",
       url: String,
       ListOn: true,
-      menuVisible: true,
+      menuVisible: false, //changed from true to false
+
       selectedNotes: null,
       notes: ["abc", "asc", "asds"],
 
       Labels: [],
-      changeTagIconToDeleteIcon: false
+      changeTagIconToDeleteIcon: false,
+      showNavigation: false,
+      screensizeTill768: false
     };
   },
   computed: {},
@@ -59,6 +64,10 @@ export default {
     //   this.showLabelDialog = !this.showLabelDialog;
     // },
 
+    reverse,
+    filterBy,
+    findBy,
+
     changeToaddLabelIcon() {
       this.addLabelIcon = !this.addLabelIcon;
     },
@@ -75,6 +84,26 @@ export default {
 
     toggleMenu() {
       this.menuVisible = !this.menuVisible;
+    },
+
+    reloadPage() {
+      location.reload();
+    },
+
+    //////////////////////////////////
+
+    screensize() {
+      this.screensizeTill768 = !this.screensizeTill768;
+      console.log("ss", this.screensizeTill768);
+    },
+
+    //////////////////////////////////
+
+    menuChange() {
+      console.log("menu Change");
+
+      this.showNavigation = !this.showNavigation;
+      console.log("showNavigation", this.showNavigation);
     },
 
     changeTagToDelete() {

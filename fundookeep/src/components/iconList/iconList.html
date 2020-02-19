@@ -13,10 +13,10 @@
       <!--------------------------------------->
 
       <md-menu md-size="medium" md-align-trigger>
-        <md-button md-menu-trigger class="md-icon-button">
+        <!-- <md-button md-menu-trigger class="md-icon-button">
           <md-tooltip md-direction="left">Remind Me</md-tooltip>
           <img src="../../assets/remindMe.svg" alt="remindme" />
-        </md-button>
+        </md-button> -->
 
         <md-menu-content class="remTrail">
           <div v-if="reminderNext == false" class="allIndvContent">
@@ -360,6 +360,11 @@
                 <div id="labelNote">
                   <span>Label note</span>
                 </div>
+
+                <!-- <h2> Exact Matched Words: </h2>
+    <ul v-for="word in findBy(words, userInput)">
+      <li>{{word}}</li>
+    </ul> -->
 
                 <div class="enterLabel">
                   <div>

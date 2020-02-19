@@ -1,2 +1,14 @@
 .reminder {
+  .dataBinding {
+    padding: 1%;
+    margin: 1%;
+    // background: aquamarine;
+  }
+
+  .events {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 }

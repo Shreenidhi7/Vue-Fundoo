@@ -1,3 +1,51 @@
 <section class="reminder">
   <h1>Reminder</h1>
+
+  <md-divider></md-divider>
+
+  <div class="dataBinding">
+    <h1>Data Binding</h1>
+
+    <!----data binding to the attribute of a html tag
+    we can either use v-bind:href or simply :href
+      -->
+    <a v-bind:href="website">The Google Home Page</a>
+    <!--------------------->
+
+    <!----data binding to the attribute 
+    from the js where html is already defined -->
+
+    <p v-html="websiteTag"></p>
+
+    <!------------------------------------->
+
+    <!----data binding with input field example--
+    example : v-bind:value="name" or   
+              v-bind:value="website"
+              "name" and "website" or those
+              the data which are returned in js file
+  -->
+    <input type="text" v-bind:value="name" />
+  </div>
+
+  <md-divider></md-divider>
+
+  <h1>Events</h1>
+
+  <!--    
+    @click="subtractAYear" @click="addAYear" can also be used BUT
+    vue itself have v-on directive which is similar to @click
+    hence v-on:click="age--" and v-on:click="age++"
+    ------->
+
+  <div class="events">
+    <button v-on:click="subtract(1)">Subtract a year</button>
+    <button @dblclick="subtract(10)">Subtract 10 year</button>
+
+    <p>My age is {{age}}</p>
+
+    <button v-on:dblclick="add(10)">Add 10 year</button>
+
+    <button v-on:click="add(1)">Add a year</button>
+  </div>
 </section>

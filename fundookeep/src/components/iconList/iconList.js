@@ -8,6 +8,8 @@ import parse from "date-fns/parse";
 import format from "date-fns/format";
 import isValid from "date-fns/isValid";
 
+import { reverse, filterBy, findBy } from "../../services/filter";
+
 export default {
   name: "icon-list",
   components: {},
@@ -120,6 +122,10 @@ export default {
 
       this.reminderNext = !this.reminderNext;
     },
+
+    reverse,
+    filterBy,
+    findBy,
 
     toDate() {
       switch (this.type) {
