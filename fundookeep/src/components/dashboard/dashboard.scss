@@ -137,6 +137,7 @@
   }
 
   .md-list-item-content {
+    background-color: lightpink;
     // min-height: 34px;
     min-height: 30px !important;
     padding: 4px 16px;
@@ -148,7 +149,8 @@
   }
 
   md-list-item-content {
-    max-height: 30px !important;
+    min-height: 30px !important;
+    color: lime;
   }
 
   .viewport {

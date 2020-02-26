@@ -58,6 +58,7 @@ export default {
       },
       Labels: [],
       array: [],
+      reminder: "",
 
       // takeNote: true,
 
@@ -434,6 +435,19 @@ export default {
     },
 
     /****************************************************************************************************** */
+
+    /****************************************************************************************
+     *
+     *
+     * CREATE REMINDER
+     *
+     *
+     */
+
+    createReminder(gr, value) {
+      console.log("in create reminder method", gr);
+      console.log("offset-1", value);
+    },
 
     makeCopy() {},
     showTickBoxes() {}
